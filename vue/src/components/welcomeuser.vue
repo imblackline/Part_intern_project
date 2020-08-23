@@ -2,7 +2,7 @@
   <div class="welcomeuser">
     <img id="avatar" src="../assets/avatar.png" alt="">
     <p><span>{{name}}</span>، خوش آمدید</p>
-    <img id="arrow" src="../assets/arrow(4).png" alt="">
+    <img id="arrow" src="../assets/arrow.png" alt="">
   </div>
 </template>
 
