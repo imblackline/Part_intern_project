@@ -39,7 +39,7 @@ export default {
     height: 74vw;
     border-radius: 50%;
     position: absolute;
-    top: -37vw;
+    top: -33vw;
     left: 13vw;
     z-index: -1;
     opacity: 0.3;

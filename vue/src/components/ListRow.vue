@@ -1,5 +1,5 @@
 <template>
-  <div class="HeaderListpage">
+  <div class="ListRow">
     <div class="row_title">
       <p>{{title}}</p>
     </div>
@@ -10,11 +10,12 @@
       </p>
       <p>
         وضعیت:
-        <span>{{state}}</span>
+        <span v-if="state =='seen'" :class="{seen: state =='seen'}">پاسخ داده شده</span>
+        <span v-else>پاسخ داده نشده</span>
       </p>
       <div class="btn_div">
-        <img src="../assets/arrow(6)@2x.png" alt />
-        <button>شروع</button>
+        <img :class="{disable_img: state =='seen'}" src="../assets/arrow(6)@2x.png" alt />
+        <button :class="{disable_btn: state =='seen'}">شروع</button>
       </div>
     </div>
   </div>
@@ -22,13 +23,27 @@
 
 <script>
 export default {
-  name: "HeaderListpage",
+  name: "ListRow",
   props: {
+    id: Number,
     title: String,
     v_num: Number,
     state: String,
   },
+  methods:{
+    seen1: function () {
+      if (this.id==3) {
+        this.state = "seen"
+      }
+    }
+  },
+  created() {
+    this.seen1(this.id);
+  }
+  
 };
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -40,7 +55,11 @@ export default {
   font-weight: normal;
   font-style: normal;
 }
-.HeaderListpage {
+.seen {
+  color: #05d667;
+}
+
+.ListRow {
   width: 100%;
   height: 116px;
   margin-bottom: 26px;
@@ -52,9 +71,9 @@ export default {
   align-items: center;
   justify-content: space-between;
   .row_title {
-      font-family: Shabnam;
-      font-size: 18px;
-      margin-right: 44.5px;
+    font-family: Shabnam;
+    font-size: 18px;
+    margin-right: 44.5px;
   }
   .row_detail {
     display: flex;
@@ -83,6 +102,12 @@ export default {
         font-size: 18px;
         padding-left: 45px;
       }
+      .disable_btn {
+        background-color: #e6e6e6;
+        box-shadow: none;
+        color: #b9b9b9;
+        cursor: not-allowed;
+      }
       img {
         position: absolute;
         top: 27px;
@@ -90,6 +115,9 @@ export default {
         left: 35px;
         pointer-events: none;
         filter: contrast(500%);
+      }
+      .disable_img{
+          filter: none;
       }
     }
   }

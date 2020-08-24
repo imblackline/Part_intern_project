@@ -45,9 +45,11 @@ export default {
     border: none;
     cursor: pointer;
     border-radius: 10px;
-    text-align: center;
+    direction: rtl;
+    padding-right: 20px;
     font-size: 16px;
-    padding-left: 20px;
+    outline: none;
+    text-align: right;
     color: #aeaeae;
     font-family: Shabnam;
     background-color: #ffffff;
