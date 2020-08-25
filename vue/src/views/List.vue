@@ -75,9 +75,7 @@ export default {
   },
   methods: {
     sortQuestionnaire: function () {
-      const sorted = this.data.sort(
-        (a, b) => new Date(b.create_date) - new Date(a.create_date)
-      );
+      const sorted = this.data.sort((a, b) => new Date(b.create_date) - new Date(a.create_date));
       this.list = sorted;
     },
   },
