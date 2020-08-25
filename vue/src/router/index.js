@@ -5,9 +5,38 @@ Vue.use(VueRouter)
 
   const routes = [
   {
-    path: '/',
-    name: 'List',
-    component: () => import('../views/List.vue')
+    path: '/questionnaire',
+    name: 'questionnaire',
+    component: () => import('../views/questionnaire'),
+    children: [
+      {
+        path: '/list',
+        name: 'List',
+      },
+      {
+        path: '/questions',
+        name: 'question',
+      },
+      {
+        path: '/complete',
+        name: 'complete',
+      }
+    ]
+  },
+  {
+    path: '/gate',
+    name: 'gate',
+    component: () => import('../views/gate'),
+    children: [
+      {
+        path: '/signin',
+        name: 'signin',
+      },
+      {
+        path: '/signup',
+        name: 'signup',
+      }
+    ]
   }
 ]
 
