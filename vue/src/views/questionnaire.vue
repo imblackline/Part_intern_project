@@ -2,6 +2,7 @@
   <div class="questionnaire">
     <div class="back_circle"></div>
     <HeaderListpage class="header" msg="لیست پرسشنامه ها" />
+    <router-view class="subroutes"/>
   </div>
 </template>
 
@@ -28,9 +29,6 @@ export default {
   .header {
     margin-top: 31px;
   }
-  .list_container {
-    margin-top: 157px;
-  }
   .back_circle {
     width: 74vw;
     height: 74vw;
@@ -41,6 +39,9 @@ export default {
     z-index: -1;
     opacity: 0.3;
     background-color: #ffffff;
+  }
+  .subroutes {
+    margin-top: 16vh;
   }
 }
 </style>

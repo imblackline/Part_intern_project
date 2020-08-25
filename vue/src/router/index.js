@@ -10,8 +10,9 @@ Vue.use(VueRouter)
     component: () => import('../views/questionnaire'),
     children: [
       {
-        path: '/list',
-        name: 'List',
+        path: 'list',
+        name: 'list',
+        component: () => import('../views/list')
       },
       {
         path: '/questions',
