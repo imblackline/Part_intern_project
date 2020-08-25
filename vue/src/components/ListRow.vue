@@ -6,7 +6,7 @@
     <div class="row_detail">
       <p>
         تعداد پرسش:
-        <span>{{v_num}}</span>
+        <span>{{v_num|persianalize}}</span>
       </p>
       <p>
         وضعیت:
@@ -30,20 +30,28 @@ export default {
     v_num: Number,
     state: String,
   },
-  methods:{
+  methods: {
     seen1: function () {
-      if (this.id==3) {
-        this.state = "seen"
+      if (this.id == 3) {
+        this.state = "seen";
       }
-    }
+    },
+  },
+  filters: {
+    persianalize: function (value) {
+      if (!value) return "";
+      let ara = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+      let ara2 = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+      for (var i = 0; i < ara.length; i++) {
+        value = value.toString().replace(ara[i], ara2[i]);
+      }
+      return value;
+    },
   },
   created() {
     this.seen1(this.id);
-  }
-  
+  },
 };
-
-
 </script>
 
 <style lang="scss" scoped>
@@ -92,6 +100,7 @@ export default {
       button {
         cursor: pointer;
         width: 100%;
+        outline: none;
         height: 100%;
         border: none;
         border-radius: 10px;
@@ -116,8 +125,8 @@ export default {
         pointer-events: none;
         filter: contrast(500%);
       }
-      .disable_img{
-          filter: none;
+      .disable_img {
+        filter: none;
       }
     }
   }
