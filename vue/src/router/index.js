@@ -12,7 +12,7 @@ Vue.use(VueRouter)
       {
         path: 'list',
         name: 'list',
-        component: () => import('../views/list')
+        component: () => import('../views/list.vue')
       },
       {
         path: '/questions',

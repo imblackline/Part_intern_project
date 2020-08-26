@@ -3,7 +3,7 @@
     <div class="top_div">
       <div class="list_num">
         <p>
-          <span>{{list.length}}</span> پرسشنامه
+          <span>{{list.length|persianalize}}</span> پرسشنامه
         </p>
       </div>
       <ListOrder />
@@ -47,6 +47,17 @@ export default {
   components: {
     ListOrder,
     ListRow,
+  },
+  filters: {
+    persianalize: function (value) {
+      if (!value) return "";
+      let ara = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+      let ara2 = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+      for (var i = 0; i < ara.length; i++) {
+        value = value.toString().replace(ara[i], ara2[i]);
+      }
+      return value;
+    }
   },
   mounted() {
     axios
