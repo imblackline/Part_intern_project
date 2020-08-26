@@ -1,8 +1,8 @@
 <template>
   <div class="welcomeuser">
-    <img id="avatar" src="../assets/avatar.png" alt="">
+    <img id="avatar" src="../assets/avatar.png" alt="avatar">
     <p><span>{{name}}</span>، خوش آمدید</p>
-    <img id="arrow" src="../assets/arrow.png" alt="">
+    <img id="arrow" src="../assets/arrow.png" alt="arrow">
   </div>
 </template>
 
@@ -37,8 +37,8 @@ export default {
     flex-direction: row-reverse;
     align-items: center;
     justify-content: space-between;
-    width: auto;
-    max-width: 25vw;
+    // width: auto;
+    // max-width: 25vw;
     overflow: hidden;
     min-width: 14vw;
     height: 100%;
@@ -56,8 +56,52 @@ export default {
         margin-right: 15px;
         margin-left: 10px;
         font-family: Shabnam;
-        text-align: right;
+        text-align: center;
         color: #4b5a9f;
     }
 }
+
+
+/*  Small tablets to big tablets: from 768 to 1023px  */
+  @media only screen and (max-width: 1023px) {
+    .welcomeuser {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+        // width: auto;
+        // max-width: 25vw;
+        overflow: hidden;
+        min-width: 14vw;
+        height: 100%;
+        #avatar {
+            width: 32px;
+            height: 32px;
+        }
+        #arrow {
+            height: 7px;
+            margin-top: 4px;
+            cursor: pointer;
+        }
+        p {
+            font-size: 14px;
+            margin-right: 8px;
+            margin-left: 8px;
+        }
+    }
+  }
+
+  /*  Small phones to small tablets: from 481px to 767px  */
+  @media only screen and (max-width: 767px) {
+    
+  }
+
+  /*  Small phones: from 350 to 480px  */
+  @media only screen and (max-width: 480px) {
+    
+  }
+
+  @media only screen and (max-width: 349px) {
+    
+  }
 </style>
