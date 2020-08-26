@@ -91,32 +91,25 @@ export default {
   font-weight: normal;
   font-style: normal;
 }
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 .Listdiv {
+  font-family: Shabnam;
   width: 62%;
-  height: 500px;
-  .list_empty {
-    display: flex;
-    margin-top: 116px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    img {
-      width: 17.5%;
-    }
-    p {
-      margin-top: 82px;
-      font-size: 23px;
-      font-family: Shabnam;
-    }
-  }
+  // height: 500px;
   .top_div {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-  }
-  .list_num {
-    font-family: Shabnam;
-    color: #7f86aa;
+    .list_num {
+      color: #7f86aa;
+      direction: rtl;
+      display: flex;
+      align-items: center;
+    }
   }
   .list_container {
     display: flex;
@@ -125,5 +118,143 @@ export default {
     justify-content: space-between;
     align-items: center;
   }
+  .list_empty {
+    display: flex;
+    margin-top: 116px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 18%;
+    }
+    p {
+      margin-top: 75px;
+      font-size: 23px;
+    }
+  }
 }
+/********************     Media Queries     *************************/
+
+  /*  Big tablets to 1400px  */
+  @media only screen and (max-width: 1400px) {
+    .Listdiv {
+      width: 72%;
+      .list_container {
+        margin-top: 22px;
+      }
+      .list_empty {
+        margin-top: 100px;
+        img {
+          width: 200px;
+        }
+        p {
+          margin-top: 65px;
+          font-size: 23px;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1199px) {
+    .Listdiv {
+      width: 75%;
+      .list_container {
+        margin-top: 20px;
+      }
+      .list_empty {
+        margin-top: 80px;
+        img {
+          width: 180px;
+        }
+        p {
+          margin-top: 60px;
+          font-size: 22px;
+        }
+      }
+    }
+  }
+
+  /*  Small tablets to big tablets: from 768 to 1023px  */
+  @media only screen and (max-width: 1023px) {
+    .Listdiv {
+      width: 78%;
+      .list_container {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  /*  Small phones to small tablets: from 481px to 767px  */
+  @media only screen and (max-width: 767px) {
+    .Listdiv {
+      width: 82%;
+      .top_div {
+        .list_num {
+          font-size: 15px;
+        }
+      }
+      
+      .list_container {
+        margin-top: 18px;
+      }
+      .list_empty {
+        margin-top: 120px;
+        p {
+          margin-top: 50px;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  /*  Small phones: from 350 to 480px  */
+  @media only screen and (max-width: 480px) {
+    .Listdiv {
+      width: 85%;
+      .top_div {
+        flex-direction: column;
+        .list_num {
+          margin-bottom: 10px;
+          font-size: 14px;
+        }
+      }
+      .list_container {
+        margin-top: 16px;
+      }
+      .list_empty {
+        margin-top: 80px;
+        img {
+          width: 160px;
+        }
+        p {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 349px) {
+    .Listdiv {
+      width: 90%;
+      .top_div {
+        .list_num {
+          margin-bottom: 6px;
+          font-size: 13px;
+        }
+      }
+      .list_container {
+        margin-top: 16px;
+      }
+      .list_empty {
+        margin-top: 60px;
+        img {
+          width: 130px;
+        }
+        p {
+          margin-top: 50px;
+          font-size: 17px;
+        }
+      }
+    }
+  }
 </style>
