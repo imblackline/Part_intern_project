@@ -30,12 +30,14 @@ Vue.use(VueRouter)
     component: () => import('../views/gate'),
     children: [
       {
-        path: '/signin',
+        path: 'signin',
         name: 'signin',
+        component: () => import('../views/signin.vue')
       },
       {
-        path: '/signup',
+        path: 'signup',
         name: 'signup',
+        component: () => import('../views/signup.vue')
       }
     ]
   }
