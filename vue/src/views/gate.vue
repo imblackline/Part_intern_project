@@ -42,7 +42,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-top: 65px;
+  padding-top: 45px;
   align-items: center;
   .up_div {
     width: 100%;
@@ -75,6 +75,39 @@ export default {
       justify-content: flex-end;
       align-items: center;
     }
+  }
+}
+@media only screen and (max-width: 1300px) {
+  .right_card {
+    width: 50% !important;
+  }
+  .left_card {
+    width: 43% !important;
+  }
+}
+@media only screen and (max-width: 1023px) {
+  .down_div {
+    justify-content: center !important;
+    .right_card {
+      justify-content: center !important;
+    }
+    .left_card {
+      position: absolute !important;
+      top: -3%;
+      right: 19%;
+      width: 70% !important;
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .right_card {
+    width: 100% !important;
+  }
+  .left_card {
+    position: absolute !important;
+    top: -3%;
+    right: 15% !important;
+    width: 75% !important;
   }
 }
 </style>

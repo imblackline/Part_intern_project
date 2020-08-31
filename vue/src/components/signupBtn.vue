@@ -1,7 +1,7 @@
 <template>
   <div class="buttons">
-    <button class="blue_btn shabnam" @click="$router.replace('/questionnaire/list');">ورود</button>
-    <button class="gray_btn shabnam" @click="$router.push('signup');">ثبت نام</button>
+    <button class="blue_btn shabnam" @click="$router.replace('/questionnaire/list');">ثبت نام</button>
+    <button class="gray_btn shabnam" @click="$router.push('signin');">ورود</button>
   </div>
 </template>
 
