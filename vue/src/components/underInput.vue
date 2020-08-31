@@ -1,11 +1,11 @@
 <template>
   <div class="underInput">
     <div class="remember_div">
-      <label for class="shabnam">مرا بخاطر داشته باش</label>
+      <label for class="rememberlabel">مرا بخاطر داشته باش</label>
       <input type="checkbox" />
     </div>
     <div class="forget_div">
-      <a href="#" class="shabnam">رمز عبور را فراموش کرده اید؟</a>
+      <a href="#" class="forgetlink">رمز عبور را فراموش کرده اید؟</a>
     </div>
   </div>
 </template>
@@ -41,7 +41,26 @@ export default {
 .underInput {
   width: 100%;
   display: flex;
+  margin-bottom: 45px;
   flex-direction: row-reverse;
   justify-content: space-between;
+  .forgetlink {
+    color:#7f86aa;
+    font-family: Shabnam;
+  }
+  label {
+    font-family: Shabnam;
+  }
+  .rememberlabel {
+    color: #7f86aa;
+  }
+}
+@media only screen and (max-width: 1150px) {
+  .forgetlink {
+    font-size: 14px;
+  }
+  .rememberlabel {
+    font-size: 14px;
+  }
 }
 </style>

@@ -1,25 +1,25 @@
 <template>
   <form class="signin_form" action>
     <div class="input_div"></div>
-    <signinInputs />
+    <signupInputs />
     <underInput />
-    <signinBtn />
+    <signupBtn />
   </form>
 </template>
 
 
 <script>
 // @ is an alias to /src
-import signinBtn from "@/components/signinBtn.vue";
+import signupBtn from "@/components/signupBtn.vue";
 import underInput from "@/components/underInput.vue";
-import signinInputs from "@/components/signinInputs.vue";
+import signupInputs from "@/components/signupInputs.vue";
 
 export default {
   name: "signin",
   components: {
-    signinBtn,
+    signupBtn,
     underInput,
-    signinInputs,
+    signupInputs,
   },
 };
 </script>
