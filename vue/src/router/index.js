@@ -12,15 +12,17 @@ Vue.use(VueRouter)
       {
         path: 'list',
         name: 'list',
-        component: () => import('../views/list.vue')
+        component: () => import('../views/list')
       },
       {
-        path: '/questions',
+        path: 'questions',
         name: 'question',
+        component: () => import('../views/questions')
       },
       {
-        path: '/complete',
+        path: 'complete',
         name: 'complete',
+        component: () => import('../views/complete')
       }
     ]
   },
