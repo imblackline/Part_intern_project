@@ -52,7 +52,7 @@ export default {
 
   /********************     Media Queries     *************************/
 
-  /*  Big tablets to 1200px  */
+  /*  Big tablets to 1400px  */
   @media only screen and (max-width: 1400px) {
     .header {
       margin-top: 27px;
