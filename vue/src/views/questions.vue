@@ -1,6 +1,6 @@
 <template>
     <div>
-        <choice />
+        <choice3 />
         <ProgressBar />
     </div>
 </template>
@@ -8,12 +8,12 @@
 
 <script>
 import ProgressBar from "@/components/ProgressBar.vue";
-import choice from "@/components/choice.vue";
+import choice3 from "@/components/choice3.vue";
 export default {
     name: "questions",
     components: {
         ProgressBar,
-        choice,
+        choice3,
     }
 }
 </script>
