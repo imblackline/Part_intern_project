@@ -1,33 +1,21 @@
 <template>
     <div class="container">
         <div class="title">
-            <p>به نظر شما گسترش هنر در جامعه بر کدام‌یک از موارد زیر می‌تواند تاثیر مثبتی داشته باشد؟</p>
+            <p>خطوط افقی مناظر طبیعی، احساس آرامش و راحتی را القا میکنند</p>
         </div>
         <div class="description">
-            <p>لطفا یک گزینه را انتخاب کنید</p>
+            <p>صحیح یا غلط بودن را مشخص کنید</p>
         </div>
         <div class="answer">
             <div class="row">
                 <div class="col sel">
                     <input type="radio" name="q" id="ch1">
-                    <label for="ch1">رشد احساسی و روحی افراد</label>
+                    <label for="ch1">غلط</label>
                     <div class="circle"><div class="dot"></div></div>
                 </div>
                 <div class="col unsel">
                     <input type="radio" name="q" id="ch2">
-                    <label for="ch2">روابط اجتماعی افراد</label>
-                    <div class="circle"><div class="dot"></div></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col unsel">
-                    <input type="radio" name="q" id="ch3">
-                    <label for="ch3">تفکر و جهان‌بینی افراد</label>
-                    <div class="circle"><div class="dot"></div></div>
-                </div>
-                <div class="col unsel">
-                    <input type="radio" name="q" id="ch4">
-                    <label for="ch4">خلاقیت افراد</label>
+                    <label for="ch2">صحیح</label>
                     <div class="circle"><div class="dot"></div></div>
                 </div>
             </div>
@@ -35,13 +23,12 @@
     </div>
 </template>
 
-
 <script>
-
 export default {
-    name: "choice"
+    name: "choice2"
 }
 </script>
+
 
 <style lang="scss" scoped>
     @font-face {
