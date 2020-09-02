@@ -62,7 +62,7 @@ export default {
   mounted() {
     axios
       //   .get(`http://jsonplaceholder.typicode.com/posts`)
-      .get("http://localhost:1111/questionnaire")
+      .get("http://localhost:8080/questionnaire")
       .then((response) => {
         // JSON responses are automatically parsed.
         this.data = response.data;

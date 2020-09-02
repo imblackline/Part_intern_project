@@ -3,7 +3,7 @@
     <div class="img_div">
       <img src="../assets/logo.png" alt="quiz logo" />
     </div>
-    <welcomeuser class="welcome_div" name="امیرحسین یعقوب نژاد" />
+    <welcomeuser @sendName="user" class="welcome_div" v-bind:name="username" />
     <p>{{msg}}</p>
   </div>
 </template>
@@ -19,6 +19,19 @@ export default {
   components: {
     welcomeuser,
   },
+  data: function (){
+    return {
+      username: "ناشناس",
+    }
+  },
+  methods: {
+    user: function (user) {
+      this.username = user["name"];
+    },
+  },
+  mounted(){
+    this.user()
+  }
 };
 </script>
 
@@ -60,106 +73,104 @@ export default {
   }
 }
 
-
-
 /********************     Media Queries     *************************/
 
-  /*  Big tablets to 1400px  */
-  @media only screen and (max-width: 1400px) {
-    .HeaderListpage {
-      padding: 0 55px;
-      .img_div {
-        img {
-          width: 130px;
-        }
-      }
-      p {
-        font-size: 23.5px;
+/*  Big tablets to 1400px  */
+@media only screen and (max-width: 1400px) {
+  .HeaderListpage {
+    padding: 0 55px;
+    .img_div {
+      img {
+        width: 130px;
       }
     }
+    p {
+      font-size: 23.5px;
+    }
   }
+}
 
-  /*  Big tablets: from 1023 to 1199px  */
-  @media only screen and (max-width: 1199px) {
-    .HeaderListpage {
-      padding: 0 50px;
-      .img_div {
-        height: 100%;
-        img {
-          width: 130px;
-        }
-      }
-      p {
-        font-size: 23px;
+/*  Big tablets: from 1023 to 1199px  */
+@media only screen and (max-width: 1199px) {
+  .HeaderListpage {
+    padding: 0 50px;
+    .img_div {
+      height: 100%;
+      img {
+        width: 130px;
       }
     }
+    p {
+      font-size: 23px;
+    }
   }
+}
 
-  /*  Small tablets to big tablets: from 768 to 1023px  */
-  @media only screen and (max-width: 1023px) {
-    .HeaderListpage {
-      padding: 0 25px;
-      .img_div {
-        height: 100%;
-        img {
-          width: 110px;
-        }
-      }
-      p {
-        font-size: 21px;
+/*  Small tablets to big tablets: from 768 to 1023px  */
+@media only screen and (max-width: 1023px) {
+  .HeaderListpage {
+    padding: 0 25px;
+    .img_div {
+      height: 100%;
+      img {
+        width: 110px;
       }
     }
+    p {
+      font-size: 21px;
+    }
   }
+}
 
-  /*  Small phones to small tablets: from 481px to 767px  */
-  @media only screen and (max-width: 767px) {
-    .HeaderListpage {
-      padding: 0 25px;
-      .img_div {
-        height: 100%;
-        img {
-          width: 100px;
-        }
-      }
-      p {
-        font-size: 20px;
+/*  Small phones to small tablets: from 481px to 767px  */
+@media only screen and (max-width: 767px) {
+  .HeaderListpage {
+    padding: 0 25px;
+    .img_div {
+      height: 100%;
+      img {
+        width: 100px;
       }
     }
+    p {
+      font-size: 20px;
+    }
   }
+}
 
-  /*  Small phones: from 350 to 480px  */
-  @media only screen and (max-width: 480px) {
-    .HeaderListpage {
-      padding: 0 30px;
-      .img_div {
-        height: 100%;
-        img {
-          width: 70px;
-        }
-      }
-      p {
-        margin: 0;
-        min-width: 200px;
-        font-size: 18px;
-        left: 50%;
-         transform: translate(-50%, 0);
+/*  Small phones: from 350 to 480px  */
+@media only screen and (max-width: 480px) {
+  .HeaderListpage {
+    padding: 0 30px;
+    .img_div {
+      height: 100%;
+      img {
+        width: 70px;
       }
     }
+    p {
+      margin: 0;
+      min-width: 200px;
+      font-size: 18px;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
   }
+}
 
-  @media only screen and (max-width: 349px) {
-    .HeaderListpage {
-      padding: 0 15px;
-      .img_div {
-        height: 100%;
-        img {
-          width: 90px;
-        }
-      }
-      p {
-        font-size: 20px;
-        bottom: -10px;
+@media only screen and (max-width: 349px) {
+  .HeaderListpage {
+    padding: 0 15px;
+    .img_div {
+      height: 100%;
+      img {
+        width: 90px;
       }
     }
+    p {
+      font-size: 20px;
+      bottom: -10px;
+    }
   }
+}
 </style>
