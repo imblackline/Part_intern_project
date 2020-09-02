@@ -57,6 +57,7 @@ export default {
         margin-left: 10px;
         font-family: Shabnam;
         text-align: center;
+        direction: rtl;
         color: #4b5a9f;
     }
 }

@@ -5,14 +5,14 @@
         <label for>ایمیل</label>
         <img class="topimg" src="../assets/mail(1).png" alt />
       </div>
-      <input type="email" class="topinput" placeholder="ایمیل خود را وارد کنید" />
+      <input type="email" v-model="email" class="topinput"  v-on:change="changed" placeholder="ایمیل خود را وارد کنید" />
     </div>
     <div class="downdiv">
       <div class="topofinput">
         <label for>رمز عبور</label>
         <img class="downimg" src="../assets/lock.png" alt />
       </div>
-      <input type="password" class="downinput" placeholder="رمز عبور خود را وارد کنید" />
+      <input type="password" v-model="password" class="downinput" v-on:change="changed" placeholder="رمز عبور خود را وارد کنید" />
     </div>
   </div>
 </template>
@@ -23,7 +23,18 @@
 
 export default {
   name: "signinInputs",
+  data: function(){
+    return {
+      email:"",
+      password: ""
+    }
+  },
   components: {},
+  methods: {
+    changed : function (){
+      this.$emit('changed', {"email": this.email , "password": this.password})
+    }
+  }
 };
 </script>
 
