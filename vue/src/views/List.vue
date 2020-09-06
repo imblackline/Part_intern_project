@@ -41,6 +41,7 @@ export default {
       data: null,
       errors: null,
       list: null,
+      username: this.$route.params.username,
     };
   },
   name: "list",
@@ -57,9 +58,11 @@ export default {
         value = value.toString().replace(ara[i], ara2[i]);
       }
       return value;
-    }
+    },
   },
   mounted() {
+    console.log(this.username);
+    this.named();
     axios
       //   .get(`http://jsonplaceholder.typicode.com/posts`)
       .get("http://localhost:8080/questionnaire")
@@ -75,8 +78,13 @@ export default {
   },
   methods: {
     sortQuestionnaire: function () {
-      const sorted = this.data.sort((a, b) => new Date(b.create_date) - new Date(a.create_date));
+      const sorted = this.data.sort(
+        (a, b) => new Date(b.create_date) - new Date(a.create_date)
+      );
       this.list = sorted;
+    },
+    named: function () {
+      this.$emit("named", { "recname": this.username});
     },
   },
 };
@@ -135,126 +143,126 @@ export default {
 }
 /********************     Media Queries     *************************/
 
-  /*  Big tablets to 1400px  */
-  @media only screen and (max-width: 1400px) {
-    .Listdiv {
-      width: 72%;
-      .list_container {
-        margin-top: 22px;
+/*  Big tablets to 1400px  */
+@media only screen and (max-width: 1400px) {
+  .Listdiv {
+    width: 72%;
+    .list_container {
+      margin-top: 22px;
+    }
+    .list_empty {
+      margin-top: 100px;
+      img {
+        width: 200px;
       }
-      .list_empty {
-        margin-top: 100px;
-        img {
-          width: 200px;
-        }
-        p {
-          margin-top: 65px;
-          font-size: 23px;
-        }
+      p {
+        margin-top: 65px;
+        font-size: 23px;
       }
     }
   }
+}
 
-  @media only screen and (max-width: 1199px) {
-    .Listdiv {
-      width: 75%;
-      .list_container {
-        margin-top: 20px;
-      }
-      .list_empty {
-        margin-top: 80px;
-        img {
-          width: 180px;
-        }
-        p {
-          margin-top: 60px;
-          font-size: 22px;
-        }
-      }
+@media only screen and (max-width: 1199px) {
+  .Listdiv {
+    width: 75%;
+    .list_container {
+      margin-top: 20px;
     }
-  }
-
-  /*  Small tablets to big tablets: from 768 to 1023px  */
-  @media only screen and (max-width: 1023px) {
-    .Listdiv {
-      width: 78%;
-      .list_container {
-        margin-top: 20px;
+    .list_empty {
+      margin-top: 80px;
+      img {
+        width: 180px;
       }
-    }
-  }
-
-  /*  Small phones to small tablets: from 481px to 767px  */
-  @media only screen and (max-width: 767px) {
-    .Listdiv {
-      width: 82%;
-      .top_div {
-        .list_num {
-          font-size: 15px;
-        }
-      }
-      
-      .list_container {
-        margin-top: 18px;
-      }
-      .list_empty {
-        margin-top: 120px;
-        p {
-          margin-top: 50px;
-          font-size: 20px;
-        }
-      }
-    }
-  }
-
-  /*  Small phones: from 350 to 480px  */
-  @media only screen and (max-width: 480px) {
-    .Listdiv {
-      width: 85%;
-      .top_div {
-        flex-direction: column;
-        .list_num {
-          margin-bottom: 10px;
-          font-size: 14px;
-        }
-      }
-      .list_container {
-        margin-top: 16px;
-      }
-      .list_empty {
-        margin-top: 80px;
-        img {
-          width: 160px;
-        }
-        p {
-          font-size: 20px;
-        }
-      }
-    }
-  }
-
-  @media only screen and (max-width: 349px) {
-    .Listdiv {
-      width: 90%;
-      .top_div {
-        .list_num {
-          margin-bottom: 6px;
-          font-size: 13px;
-        }
-      }
-      .list_container {
-        margin-top: 16px;
-      }
-      .list_empty {
+      p {
         margin-top: 60px;
-        img {
-          width: 130px;
-        }
-        p {
-          margin-top: 50px;
-          font-size: 17px;
-        }
+        font-size: 22px;
       }
     }
   }
+}
+
+/*  Small tablets to big tablets: from 768 to 1023px  */
+@media only screen and (max-width: 1023px) {
+  .Listdiv {
+    width: 78%;
+    .list_container {
+      margin-top: 20px;
+    }
+  }
+}
+
+/*  Small phones to small tablets: from 481px to 767px  */
+@media only screen and (max-width: 767px) {
+  .Listdiv {
+    width: 82%;
+    .top_div {
+      .list_num {
+        font-size: 15px;
+      }
+    }
+
+    .list_container {
+      margin-top: 18px;
+    }
+    .list_empty {
+      margin-top: 120px;
+      p {
+        margin-top: 50px;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+/*  Small phones: from 350 to 480px  */
+@media only screen and (max-width: 480px) {
+  .Listdiv {
+    width: 85%;
+    .top_div {
+      flex-direction: column;
+      .list_num {
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+    }
+    .list_container {
+      margin-top: 16px;
+    }
+    .list_empty {
+      margin-top: 80px;
+      img {
+        width: 160px;
+      }
+      p {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 349px) {
+  .Listdiv {
+    width: 90%;
+    .top_div {
+      .list_num {
+        margin-bottom: 6px;
+        font-size: 13px;
+      }
+    }
+    .list_container {
+      margin-top: 16px;
+    }
+    .list_empty {
+      margin-top: 60px;
+      img {
+        width: 130px;
+      }
+      p {
+        margin-top: 50px;
+        font-size: 17px;
+      }
+    }
+  }
+}
 </style>

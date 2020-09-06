@@ -18,7 +18,7 @@
     
     <div class="btn_div">
         <img :class="{disable_img: state =='seen'}" src="../assets/arrow(6)@2x.png" alt />
-        <button :class="{disable_btn: state =='seen'}">شروع</button>
+        <button :class="{disable_btn: state =='seen'}"  @click="state=='seen' ?  none :gotoquestion()">شروع</button>
     </div>
   </div>
 </template>
@@ -38,6 +38,9 @@ export default {
         this.state = "seen";
       }
     },
+    gotoquestion: function () {
+      this.$router.replace('/questionnaire/questions');
+    }
   },
   filters: {
     persianalize: function (value) {

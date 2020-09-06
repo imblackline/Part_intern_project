@@ -1,8 +1,8 @@
 <template>
   <div class="questionnaire">
     <div class="back_circle"></div>
-    <HeaderListpage class="header" msg="لیست پرسشنامه ها" />
-    <router-view class="subroutes"/>
+    <HeaderListpage class="header" v-bind:username="sendname" msg="لیست پرسشنامه ها" />
+    <router-view @named="setname" class="subroutes"/>
   </div>
 </template>
 
@@ -15,6 +15,16 @@ export default {
   name: "questionnaire",
   components: {
     HeaderListpage
+  },
+  data: function(){
+    return {
+      sendname : "",
+    }
+  },
+  methods: {
+    setname: function(param){
+      this.sendname = param["recname"]
+    }
   }
 };
 </script>

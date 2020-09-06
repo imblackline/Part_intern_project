@@ -3,7 +3,7 @@
     <div class="img_div">
       <img src="../assets/logo.png" alt="quiz logo" />
     </div>
-    <welcomeuser @sendName="user" class="welcome_div" v-bind:name="username" />
+    <welcomeuser class="welcome_div" v-bind:name="username" />
     <p>{{msg}}</p>
   </div>
 </template>
@@ -15,23 +15,25 @@ export default {
   name: "HeaderListpage",
   props: {
     msg: String,
+    username: String,
   },
   components: {
     welcomeuser,
   },
-  data: function (){
+  data: function () {
     return {
-      username: "ناشناس",
-    }
+      name: "ناشناس",
+    };
   },
   methods: {
-    user: function (user) {
-      this.username = user["name"];
-    },
+    // user: function (user) {
+    //   this.username = user["name"];
+    // },
   },
-  mounted(){
-    this.user()
-  }
+  mounted() {
+      this.name = this.username;
+      alert(this.name, "and", this.username)
+  },
 };
 </script>
 
