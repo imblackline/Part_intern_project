@@ -15,7 +15,7 @@ import underInput from "@/components/underInput.vue";
 import signinInputs from "@/components/signinInputs.vue";
 import axios from "axios";
 // import Vue from "vue";
-// import * as Toastr from 'toastr';
+import toast from 'toastr';
 
 export default {
   name: "signin",
@@ -25,7 +25,6 @@ export default {
       name: "",
       password: "",
       data: null,
-      haveAccess: false,
     };
   },
   mounted() {
@@ -38,46 +37,55 @@ export default {
       .catch((e) => {
         this.errors.push(e);
       });
+
+      console.log(toast)
+
+      setTimeout(()=>{
+        toast.info("Hello")
+      },2000)
     
   },
   methods: {
-    sendName : function (){
-      this.$emit('sendName', {"name": this.name})
-    },
+    // sendName : function (){
+    //   this.$emit('sendName', {"name": this.name})
+    // },
     changeParam: function (param) {
       this.email = param["email"];
       this.password = param["password"];
     },
     checkuser: function () {
       /////////////////////////////////////////////
-      // axios
-      // .post('http://localhost:8080/gate/signin', {
-      //   email: "Fred@sad.cms",
-      // })
-      // .then(res => {
-      //   console.log(res);
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
+      axios
+      .post('http://localhost:8080/gate/signin',{
+        "email": this.email,
+        "password": this.password,
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
       ///////////////////////////////////////////
-      this.haveAccess = false;
-      console.log("recived", this.email, this.password, "data => ", this.data);
-      for (let i = 0; i < this.data.length; i++) {
-        // console.log("email & password ==",u.email , u.password)
-        if (this.email === this.data[i].email) {
-          if (this.password === this.data[i].password) {
-            this.haveAccess = true;
-            this.name = this.data[i].name;
-            this.$router.replace('/questionnaire/list');
-          }
-        }
-      }
-      if (this.haveAccess === false) {
-        console.log("email or password is wrong");
-        // Toastr.success('Success messages');
-        alert("Email or password is wrong!")
-      }
+      ////////////////////////////////////////////// check user in client
+      // this.haveAccess = false;
+      // console.log("recived", this.email, this.password, "data => ", this.data);
+      // for (let i = 0; i < this.data.length; i++) {
+      //   // console.log("email & password ==",u.email , u.password)
+      //   if (this.email === this.data[i].email) {
+      //     if (this.password === this.data[i].password) {
+      //       this.haveAccess = true;
+      //       this.name = this.data[i].name;
+      //       this.$router.replace({name:'list',params:{username:this.name}});
+      //     }
+      //   }
+      // }
+      // if (this.haveAccess === false) {
+      //   console.log("email or password is wrong");
+      //   // Toastr.success('Success messages');
+      //   alert("Email or password is wrong!")
+      // }
+      //////////////////////////////////////////////////////
     },
   },
   components: {

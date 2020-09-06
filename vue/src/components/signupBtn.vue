@@ -1,6 +1,6 @@
 <template>
   <div class="buttons">
-    <button class="blue_btn shabnam" @click="$router.replace('/questionnaire/list');">ثبت نام</button>
+    <button class="blue_btn shabnam" @click="enter">ثبت نام</button>
     <button class="gray_btn shabnam" @click="$router.push('signin');">ورود</button>
   </div>
 </template>
@@ -13,6 +13,11 @@
 export default {
   name: "signinBtn",
   components: {},
+  methods: {
+    enter : function (){
+      this.$emit('enter');
+    }
+  }
 };
 </script>
 

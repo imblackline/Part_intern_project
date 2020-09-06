@@ -7,7 +7,7 @@
             <p>شما با <span>موفقیت</span> پرسشنامه را به اتمام رساندید</p>
         </div>
         <div class="list-btn">
-            <button><img src="../assets/arrow(6) white.svg" alt=""><span>مشاهده پرسشنامه ها</span></button>
+            <button @click="$router.replace('/questionnaire/list');"><img src="../assets/arrow(6) white.svg" alt=""><span>مشاهده پرسشنامه ها</span></button>
         </div>
     </div>
 </template>
@@ -60,6 +60,7 @@ export default {
         display: flex;
         justify-content: center;
         button {
+            cursor: pointer;
             border-radius: 10px;
             width: 294px;
             box-shadow: 0 2px 5px 0 rgba(69, 112, 245, 0.6);
