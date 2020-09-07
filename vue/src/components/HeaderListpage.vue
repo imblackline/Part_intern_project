@@ -32,7 +32,7 @@ export default {
   },
   mounted() {
       this.name = this.username;
-      alert(this.name, "and", this.username)
+      // alert(this.name, "and", this.username)
   },
 };
 </script>

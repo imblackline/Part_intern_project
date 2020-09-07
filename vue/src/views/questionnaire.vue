@@ -1,7 +1,7 @@
 <template>
   <div class="questionnaire">
     <div class="back_circle"></div>
-    <HeaderListpage class="header" v-bind:username="sendname" msg="لیست پرسشنامه ها" />
+    <HeaderListpage class="header" v-bind:username="this.usernamee" msg="لیست پرسشنامه ها" />
     <router-view @named="setname" class="subroutes"/>
   </div>
 </template>
@@ -19,11 +19,12 @@ export default {
   data: function(){
     return {
       sendname : "",
+      usernamee: this.$route.params.name,
     }
   },
   methods: {
     setname: function(param){
-      this.sendname = param["recname"]
+      this.sendname = param["rec"]
     }
   }
 };
