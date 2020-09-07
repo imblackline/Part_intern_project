@@ -61,14 +61,14 @@ export default {
     },
   },
   mounted() {
-    console.log(this.username);
     this.named();
     axios
       //   .get(`http://jsonplaceholder.typicode.com/posts`)
-      .get("http://localhost:8080/questionnaire")
+      .get("http://localhost:8080/questionnaire/list")
       .then((response) => {
         // JSON responses are automatically parsed.
-        this.data = response.data;
+        // console.log(response.data);
+        this.data = response.data.rows;
 
         this.sortQuestionnaire();
       })

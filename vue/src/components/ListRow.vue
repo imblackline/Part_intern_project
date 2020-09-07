@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import Axios from 'axios';
 export default {
   name: "ListRow",
   props: {
@@ -39,7 +40,16 @@ export default {
       }
     },
     gotoquestion: function () {
+      console.log("hi");
+      Axios.get(`/questionnaire/questions?id=${this.id}`)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
       this.$router.replace('/questionnaire/questions');
+
     }
   },
   filters: {
