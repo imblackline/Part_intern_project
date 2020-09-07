@@ -15,7 +15,7 @@ import underInput from "@/components/underInput.vue";
 import signinInputs from "@/components/signinInputs.vue";
 import axios from "axios";
 // import Vue from "vue";
-import toast from 'toastr';
+// import toast from 'toastr';
 
 export default {
   name: "signin",
@@ -28,22 +28,21 @@ export default {
     };
   },
   mounted() {
-    axios
-      .get("http://localhost:8080/gate/signin")
-      .then((response) => {
-        this.data = response.data;
-        console.log(response.data);
-      })
-      .catch((e) => {
-        this.errors.push(e);
-      });
+    // axios
+    //   .get("http://localhost:8080/gate/signin")
+    //   .then((response) => {
+    //     this.data = response.data;
+    //     console.log(response.data);
+    //   })
+    //   .catch((e) => {
+    //     this.errors.push(e);
+    //   });
 
-      console.log(toast)
+    //   console.log(toast)
 
-      setTimeout(()=>{
-        toast.info("Hello")
-      },2000)
-    
+    //   setTimeout(()=>{
+    //     toast.info("Hello")
+    //   },2000)
   },
   methods: {
     // sendName : function (){
