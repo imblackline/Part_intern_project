@@ -74,6 +74,8 @@ export default {
                 title: this.title,
                 seen: seen,
                 questions: response.data,
+                questionnaire_id:this.id,
+                user_id:parseInt(this.userId),
               },
             });
           })
