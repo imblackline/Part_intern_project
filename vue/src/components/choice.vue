@@ -9,14 +9,22 @@
     </div>
     <div class="answer">
       <div class="row">
-        <div class="col" :class="{ 'sel': isSelect[0] , 'unsel':!isSelect[0] }" @click="!seen ? select(0):null">
+        <div
+          class="col"
+          :class="{ 'sel': isSelect[0] , 'unsel':!isSelect[0] }"
+          @click="!seen ? select(0):null"
+        >
           <input type="radio" name="q" id="ch1" />
           <label for="ch1">{{a1}}</label>
           <div class="circle">
             <div class="dot"></div>
           </div>
         </div>
-        <div class="col" :class="{ sel: isSelect[1], unsel:!isSelect[1] }" @click="!seen ? select(1):null">
+        <div
+          class="col"
+          :class="{ sel: isSelect[1], unsel:!isSelect[1] }"
+          @click="!seen ? select(1):null"
+        >
           <input type="radio" name="q" id="ch2" />
           <label for="ch2">{{a2}}</label>
           <div class="circle">
@@ -25,14 +33,22 @@
         </div>
       </div>
       <div class="row">
-        <div class="col" :class="{ sel: isSelect[2], unsel:!isSelect[2] }" @click="!seen ? select(2):null">
+        <div
+          class="col"
+          :class="{ sel: isSelect[2], unsel:!isSelect[2] }"
+          @click="!seen ? select(2):null"
+        >
           <input type="radio" name="q" id="ch3" />
           <label for="ch3">{{a3}}</label>
           <div class="circle">
             <div class="dot"></div>
           </div>
         </div>
-        <div class="col" :class="{ sel: isSelect[3], unsel:!isSelect[3] }" @click="!seen ? select(3):null">
+        <div
+          class="col"
+          :class="{ sel: isSelect[3], unsel:!isSelect[3] }"
+          @click="!seen ? select(3):null"
+        >
           <input type="radio" name="q" id="ch4" />
           <label for="ch4">{{a4}}</label>
           <div class="circle">
@@ -67,8 +83,12 @@ export default {
       this.isSelect = newselect;
       this.$emit("selectlist", this.isSelect);
     },
+    selected: function (newVal) {
+      this.select(newVal);
+    },
   },
   mounted() {
+    console.log("seeeeeeeel", this.selected);
     this.select(this.selected);
   },
   methods: {
@@ -120,7 +140,7 @@ export default {
     line-height: 42px;
     color: #2a3774;
     margin: 0 auto;
-    p{
+    p {
       direction: rtl;
     }
   }
