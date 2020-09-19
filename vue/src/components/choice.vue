@@ -1,40 +1,40 @@
 <template>
   <div class="container">
     <div class="title">
-      <p>به نظر شما گسترش هنر در جامعه بر کدام‌یک از موارد زیر می‌تواند تاثیر مثبتی داشته باشد؟</p>
+      <!-- <p>به نظر شما گسترش هنر در جامعه بر کدام‌یک از موارد زیر می‌تواند تاثیر مثبتی داشته باشد؟</p> -->
+      <p>{{content}}</p>
     </div>
     <div class="description">
       <p>لطفا یک گزینه را انتخاب کنید</p>
     </div>
     <div class="answer">
       <div class="row">
-        <div class="col" :class="{ 'sel': isSelect[0] , 'unsel':!isSelect[0] }" @click="select(0)">
+        <div class="col" :class="{ 'sel': isSelect[0] , 'unsel':!isSelect[0] }" @click="!seen ? select(0):null">
           <input type="radio" name="q" id="ch1" />
-          <label for="ch1">رشد احساسی و روحی افراد</label>
+          <label for="ch1">{{a1}}</label>
           <div class="circle">
             <div class="dot"></div>
           </div>
         </div>
-        <div class="col" :class="{ sel: isSelect[1], unsel:!isSelect[1] }" @click="select(1)">
+        <div class="col" :class="{ sel: isSelect[1], unsel:!isSelect[1] }" @click="!seen ? select(1):null">
           <input type="radio" name="q" id="ch2" />
-          <span class="background"></span>
-          <label for="ch2">روابط اجتماعی افراد</label>
+          <label for="ch2">{{a2}}</label>
           <div class="circle">
             <div class="dot"></div>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col" :class="{ sel: isSelect[2], unsel:!isSelect[2] }" @click="select(2)">
+        <div class="col" :class="{ sel: isSelect[2], unsel:!isSelect[2] }" @click="!seen ? select(2):null">
           <input type="radio" name="q" id="ch3" />
-          <label for="ch3">تفکر و جهان‌بینی افراد</label>
+          <label for="ch3">{{a3}}</label>
           <div class="circle">
             <div class="dot"></div>
           </div>
         </div>
-        <div class="col" :class="{ sel: isSelect[3], unsel:!isSelect[3] }" @click="select(3)">
+        <div class="col" :class="{ sel: isSelect[3], unsel:!isSelect[3] }" @click="!seen ? select(3):null">
           <input type="radio" name="q" id="ch4" />
-          <label for="ch4">خلاقیت افراد</label>
+          <label for="ch4">{{a4}}</label>
           <div class="circle">
             <div class="dot"></div>
           </div>
@@ -53,15 +53,33 @@ export default {
       isSelect: [false, false, false, false],
     };
   },
+  props: {
+    content: String,
+    a1: String,
+    a2: String,
+    a3: String,
+    a4: String,
+    selected: Number,
+    seen: Boolean,
+  },
+  watch: {
+    isSelect: function (newselect) {
+      this.isSelect = newselect;
+      this.$emit("selectlist", this.isSelect);
+    },
+  },
+  mounted() {
+    this.select(this.selected);
+  },
   methods: {
     select: function (num) {
-      let newList = [...this.isSelect];
-      newList[num] = !newList[num];
-      
+      // let newList = [...this.isSelect];
+      let newList = [];
+      newList[num] = true;
+
       this.isSelect = newList;
-    //   this.isSelect[num] = !th is.isSelect[num];
-    //   alert(this.isSelect[num]);
-    console.log(this.isSelect)
+      //   this.isSelect[num] = !th is.isSelect[num];
+      //   alert(this.isSelect[num]);
     },
   },
 };
@@ -92,6 +110,9 @@ export default {
 
 .container {
   font-family: Shabnam;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .title {
     font-size: 27px;
     letter-spacing: -0.3px;
@@ -99,6 +120,9 @@ export default {
     line-height: 42px;
     color: #2a3774;
     margin: 0 auto;
+    p{
+      direction: rtl;
+    }
   }
   .description {
     color: #7f86aa;
@@ -119,7 +143,7 @@ export default {
       height: 50%;
       width: 100%;
       .col {
-          cursor: pointer;
+        cursor: pointer;
         width: 50%;
         height: 100%;
         border-radius: 10px;
@@ -135,12 +159,9 @@ export default {
           position: fixed;
           opacity: 0;
           z-index: -10;
-
-        //   &:checked + .background{
-
-        //   }
         }
         label {
+          cursor: pointer;
           margin-right: 20px;
           letter-spacing: -0.16px;
           text-align: right;

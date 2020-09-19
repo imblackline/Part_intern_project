@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="containers">
     <div class="next">
       <button @click="nextClcik">
         <img src="../assets/arrow(6) white.svg" alt="arrow" />
-        <span v-if="questionNum !== 3">سوال بعدی</span>
+        <span v-if="this.questionNum < this.num-1">سوال بعدی</span>
         <span v-else>اتمام آزمون</span>
       </button>
     </div>
@@ -12,11 +12,11 @@
         <div class="circle">
           <div class="tooltip">
             <span>
-              <span>{{percent}}%</span> تکمیل شده
+              <span style="margin-right:5px">{{percent}}%</span> تکمیل شده
             </span>
             <div class="arrow"></div>
             <span>
-              <span>3/{{questionNum}}</span>پرسش
+              <span style="margin-right:5px">{{questionNum+1}}/{{num}}</span>پرسش
             </span>
           </div>
         </div>
@@ -34,35 +34,42 @@
 <script>
 export default {
   name: "ProgressBar",
+  props: {
+    num: Number,
+    questionNum: Number,
+  },
   data: function () {
     return {
-      questionNum: 1,
-      percent: 0.0,
-      width: '0%',
+      // percent: ((this.questionNum + 1) / this.num) * 100,
+      width: "0%",
     };
   },
   computed: {
-    myStyles () {
+    myStyles() {
       return {
         // height: `${this.height}px`,
-        width: `${((this.questionNum-1)/3)*100}%`
-      }
+        width: `${this.percent}%`,
+      };
+    },
+    percent() {
+     return ((this.questionNum + 1) / this.num) * 100;
     }
+  },
+  mounted() {
+    // this.percent = ((this.questionNum + 1) / this.num) * 100;
   },
   methods: {
     nextClcik: function () {
+      console.log("num", this.questionNum, "len", this.num);
       this.$emit("next");
-      if (this.questionNum !== 3) {
-        this.questionNum++;
-        this.percent += 33.3;
-      }
+
+      console.log("qnum>>>>>>>>>>>>>>>", this.questionNum);
+      // this.percent = ((this.questionNum + 1) / this.num) * 100;
     },
     backClcik: function () {
       this.$emit("back");
-      if (this.questionNum !== 1) {
-        this.questionNum--;
-        this.percent -= 33.3;
-      }
+      console.log("qnum>>>>>>>>>>>>>>>", this.questionNum);
+      // this.percent = ((this.questionNum +1) / this.num) * 100;
     },
   },
 };
@@ -83,7 +90,7 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
-.container {
+.containers {
   position: fixed;
   bottom: 0;
   left: 50%;
@@ -177,7 +184,7 @@ export default {
           font-size: 19px;
           padding: 10px 18.5px 10px 14.5px;
           left: 50%;
-        //   top: -23px;
+          //   top: -23px;
           top: -30px;
           transform: translate(-50%, -100%);
           span:last-child {
@@ -223,7 +230,7 @@ export default {
 
 /*  Big tablets to 1400px  */
 @media only screen and (max-width: 1400px) {
-  .container {
+  .containers {
     transform: translate(-50%, -4vh);
     .next {
       button {
@@ -265,7 +272,7 @@ export default {
 }
 
 @media only screen and (max-width: 1200px) {
-  .container {
+  .containers {
     transform: translate(-50%, -4vh);
     border-radius: 12px;
     .next {
@@ -313,7 +320,7 @@ export default {
 }
 
 @media only screen and (max-width: 1023px) {
-  .container {
+  .containers {
     transform: translate(-50%, -3vh);
     border-radius: 11px;
     .next {
@@ -364,7 +371,7 @@ export default {
 }
 
 @media only screen and (max-width: 1023px) {
-  .container {
+  .containers {
     transform: translate(-50%, -2vh);
     width: 94vw;
     border-radius: 10px;
@@ -416,7 +423,7 @@ export default {
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
+  .containers {
     padding: 8px;
     .next {
       button {
@@ -463,7 +470,7 @@ export default {
 }
 
 @media only screen and (max-width: 480px) {
-  .container {
+  .containers {
     // bottom: 0;
     transform: translate(-50%, -1vh);
     width: 95vw;
@@ -525,7 +532,7 @@ export default {
 }
 
 @media only screen and (max-width: 380px) {
-  .container {
+  .containers {
     width: 96vw;
     height: 90px;
     padding: 6px;

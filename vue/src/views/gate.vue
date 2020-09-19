@@ -1,7 +1,7 @@
 <template>
   <div class="gate">
     <div class="up_div">
-      <img src="../assets/logo.svg" alt />
+      <img @click="$router.replace('/')" src="../assets/logo.svg" alt />
     </div>
     <div class="down_div">
       <div class="left_card">
@@ -53,6 +53,7 @@ export default {
     img {
       width: 133px;
       margin-right: 10.9vw;
+      cursor: pointer;
     }
   }
   .down_div {
