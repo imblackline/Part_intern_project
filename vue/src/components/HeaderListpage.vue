@@ -1,7 +1,7 @@
 <template>
   <div class="HeaderListpage">
     <div class="img_div">
-      <img src="../assets/logo.png" alt="quiz logo" />
+      <img @click="gotoList()" src="../assets/logo.svg" alt="quiz logo" />
     </div>
     <welcomeuser class="welcome_div" v-bind:name="username" />
     <p>{{msg}}</p>
@@ -26,13 +26,31 @@ export default {
     };
   },
   methods: {
+    gotoList() {
+      // this.msg = "لیست پرسشنامه ها";
+      // console.log("mssssssg",this.msg)
+      this.$emit("titleChange", { title:"لیست پرسشنامه ها" });
+      if (this.$router.currentRoute.fullPath !== "/questionnaire/list")
+      this.$router.replace("/questionnaire/list");
+    },
     // user: function (user) {
     //   this.username = user["name"];
     // },
   },
+  // computed: {
+  //   title: function () {
+  //     console.log("mssssssage",this.msg)
+  //     if (this.$router.currentRoute.fullPath === "/questionnaire/list") {
+  //       return "لیست پرسشنامه ها";
+  //     }
+  //     return this.msg;
+  //   },
+  // },
   mounted() {
-      this.name = this.username;
-      // alert(this.name, "and", this.username)
+    this.name = this.username;
+    // console.log("roooooooooute", this.$router.currentRoute);
+
+    // alert(this.name, "and", this.username)
   },
 };
 </script>

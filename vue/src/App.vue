@@ -7,7 +7,9 @@
     <router-view/>
   </div>
 </template>
-
+// <script>
+//   var VuePagination = require('v-pagination');
+// </script>
 <style lang="scss" scoped>
 * {
   padding: 0;

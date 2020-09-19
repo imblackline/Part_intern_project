@@ -10,13 +10,17 @@
     </div>
     <div v-if="list.length>0" id="list" class="list_container">
       <ListRow
-        v-for="li in list"
-        :key="li"
+        v-for="li in showItem"
+        :key="li.id"
         :id="li.id"
+        :userId="userId"
         :title="li.name"
         :v_num="li.questions_num"
-        state="unseen"
+        :state="li.answered"
       />
+      <v-app>
+        <v-pagination v-model="page" :length="pageNum" :total-visible="5" circle></v-pagination>
+      </v-app>
     </div>
     <div v-else class="list_empty">
       <img src="../assets/cancel.png" alt />
@@ -29,8 +33,14 @@
 import ListOrder from "@/components/ListOrder.vue";
 import ListRow from "@/components/ListRow.vue";
 import axios from "axios";
+import Vue from "vue";
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
+
+Vue.use(Vuetify);
 
 export default {
+  vuetify: new Vuetify(),
   data: function () {
     return {
       // lists: [
@@ -38,10 +48,13 @@ export default {
       //   { title: "پرسشنامه تجربه کاربر", v_num: "23", state: "unseen" },
       //   { title: "پرسشنامه اطلاعات عمومی", v_num: "26", state: "unseen" },
       // ],
+      page: 1,
       data: null,
       errors: null,
-      list: null,
-      username: this.$route.params.username,
+      list: [],
+      showItem: [],
+      username: localStorage.getItem("username"),
+      userId: localStorage.getItem("userId"),
     };
   },
   name: "list",
@@ -60,21 +73,28 @@ export default {
       return value;
     },
   },
+  watch: {
+    page: function (val) {
+      this.showItem = [];
+      for (let i = 0; i < 3; i++) {
+        let j = i + (val - 1) * 3;
+        if (this.list[j] !== undefined) this.showItem.push(this.list[j]);
+      }
+    },
+  },
   mounted() {
+    console.log("userid>>>>>>>>>>>>>>>>>", this.userId);
     this.named();
-    axios
-      //   .get(`http://jsonplaceholder.typicode.com/posts`)
-      .get("http://localhost:8080/questionnaire/list")
-      .then((response) => {
-        // JSON responses are automatically parsed.
-        // console.log(response.data);
-        this.data = response.data.rows;
-
-        this.sortQuestionnaire();
-      })
-      .catch((e) => {
-        this.errors.push(e);
-      });
+    this.getlist();
+  },
+  computed: {
+    pageNum: function () {
+      console.log("this.list", this.list.length);
+      if (this.list.length % 3 === 0) {
+        return parseInt(this.list.length / 3);
+      }
+      return parseInt(this.list.length / 3) + 1;
+    },
   },
   methods: {
     sortQuestionnaire: function () {
@@ -84,7 +104,28 @@ export default {
       this.list = sorted;
     },
     named: function () {
-      this.$emit("named", { "recname": this.username});
+      console.log("name>>>", this.username);
+      this.$emit("named", { recname: this.username });
+    },
+    getlist: function () {
+      axios
+        .get("http://localhost:8080/questionnaire/list", {
+          params: {
+            id: this.userId
+          },
+        })
+        .then((response) => {
+          this.data = response.data;
+          this.sortQuestionnaire();
+          console.log(this.list);
+          for (let i = 0; i < 3; i++) {
+            i = i + (this.page - 1) * 3;
+            this.showItem.push(this.list[i]);
+          }
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
     },
   },
 };
@@ -103,6 +144,13 @@ export default {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+.v-application {
+  background-color: rgba(255, 255, 255, 0) !important;
+  direction: rtl;
+}
+.v-icon.v-icon {
+  transform: rotate(180deg) !important;
 }
 .Listdiv {
   font-family: Shabnam;

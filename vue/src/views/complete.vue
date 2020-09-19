@@ -7,7 +7,7 @@
             <p>شما با <span>موفقیت</span> پرسشنامه را به اتمام رساندید</p>
         </div>
         <div class="list-btn">
-            <button @click="$router.replace('/questionnaire/list');"><img src="../assets/arrow(6) white.svg" alt=""><span>مشاهده پرسشنامه ها</span></button>
+            <button @click="goToList"><img src="../assets/arrow(6) white.svg" alt=""><span>مشاهده پرسشنامه ها</span></button>
         </div>
     </div>
 </template>
@@ -17,7 +17,13 @@
 
 
 export default {
-    name: "Complete"
+    name: "Complete",
+    methods: {
+        goToList: function(){
+            this.$emit("title", { title: "لیست پرسشنامه ها" });
+            this.$router.replace('/questionnaire/list');
+        }
+    }
 }
 </script>
 

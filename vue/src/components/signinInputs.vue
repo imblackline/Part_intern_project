@@ -5,14 +5,28 @@
         <label for>ایمیل</label>
         <img class="topimg" src="../assets/mail(1).png" alt />
       </div>
-      <input type="email" v-model="email" class="topinput"  v-on:change="changed" placeholder="ایمیل خود را وارد کنید" />
+      <input
+        type="email"
+        :class="{'error_input':email_error}"
+        v-model="email"
+        class="topinput"
+        v-on:change="changed"
+        placeholder="ایمیل خود را وارد کنید"
+      />
     </div>
     <div class="downdiv">
       <div class="topofinput">
         <label for>رمز عبور</label>
         <img class="downimg" src="../assets/lock.png" alt />
       </div>
-      <input type="password" v-model="password" class="downinput" v-on:change="changed" placeholder="رمز عبور خود را وارد کنید" />
+      <input
+        type="password"
+        :class="{'error_input':password_error}"
+        v-model="password"
+        class="downinput"
+        v-on:change="changed"
+        placeholder="رمز عبور خود را وارد کنید"
+      />
     </div>
   </div>
 </template>
@@ -23,18 +37,32 @@
 
 export default {
   name: "signinInputs",
-  data: function(){
+  data: function () {
     return {
-      email:"",
-      password: ""
-    }
+      email: "",
+      password: "",
+      email_error: false,
+      password_error: false,
+    };
+  },
+  props: {
+    error: Array,
+  },
+  watch: {
+    // whenever question changes, this function will run
+    error: function (newError) {
+      if (newError.includes("email")) this.email_error = true;
+      else this.email_error = false;
+      if (newError.includes("password")) this.password_error = true;
+      else this.password_error = false;
+    },
   },
   components: {},
   methods: {
-    changed : function (){
-      this.$emit('changed', {"email": this.email , "password": this.password})
-    }
-  }
+    changed: function () {
+      this.$emit("changed", { email: this.email, password: this.password });
+    },
+  },
 };
 </script>
 
@@ -54,6 +82,11 @@ export default {
     url("../assets/Shabnam.ttf") format("ttf");
   font-weight: normal;
   font-style: normal;
+}
+.error_input {
+  border: 2px solid rgba(253, 73, 73, 0.5) !important;
+  box-shadow: 0 10px 10px rgba(156, 1, 1, 0.5);
+  z-index: 3;
 }
 .signinInputs {
   margin-top: 48px;
@@ -93,7 +126,7 @@ export default {
       height: 17px;
     }
     label {
-        color:#7f86aa;
+      color: #7f86aa;
     }
   }
   .topdiv {

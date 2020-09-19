@@ -1,8 +1,8 @@
 <template>
   <div class="questionnaire">
     <div class="back_circle"></div>
-    <HeaderListpage class="header" v-bind:username="this.usernamee" msg="لیست پرسشنامه ها" />
-    <router-view @named="setname" class="subroutes"/>
+    <HeaderListpage @titleChange="setHeaderTitle" class="header" v-bind:username="this.usernamee" :msg="this.title" />
+    <router-view @named="setname" @title="setTitle" class="subroutes" />
   </div>
 </template>
 
@@ -14,19 +14,30 @@ import HeaderListpage from "@/components/HeaderListpage.vue";
 export default {
   name: "questionnaire",
   components: {
-    HeaderListpage
+    HeaderListpage,
   },
-  data: function(){
+  data: function () {
     return {
-      sendname : "",
+      sendname: "",
+      title: "لیست پرسشنامه ها",
       usernamee: this.$route.params.name,
-    }
+    };
   },
   methods: {
-    setname: function(param){
-      this.sendname = param["rec"]
-    }
-  }
+    setname: function (param) {
+            this.usernamee= param["recname"];
+    },
+    setHeaderTitle: function (param){
+      this.title = param["title"]
+    },
+    setTitle: function (param) {
+      console.log("title", param["title"]);
+      this.title = param["title"];
+    },
+  },
+  mounted() {
+    this.title = "لیست پرسشنامه ها";
+  },
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <form class="signin_form" action>
     <div class="input_div"></div>
-    <signinInputs @changed="changeParam" />
+    <signinInputs @changed="changeParam" :error="this.errors" />
     <underInput />
     <signinBtn @enter="checkuser" />
   </form>
@@ -14,17 +14,18 @@ import signinBtn from "@/components/signinBtn.vue";
 import underInput from "@/components/underInput.vue";
 import signinInputs from "@/components/signinInputs.vue";
 import axios from "axios";
+import toast from "toastr";
 // import Vue from "vue";
-// import toast from 'toastr';
 
 export default {
   name: "signin",
   data: function () {
     return {
-      email: "",
       name: "",
+      email: "",
       password: "",
       data: null,
+      errors: [],
     };
   },
   mounted() {
@@ -37,9 +38,7 @@ export default {
     //   .catch((e) => {
     //     this.errors.push(e);
     //   });
-
     //   console.log(toast)
-
     //   setTimeout(()=>{
     //     toast.info("Hello")
     //   },2000)
@@ -52,19 +51,76 @@ export default {
       this.email = param["email"];
       this.password = param["password"];
     },
+    checkinputs: function () {
+      this.errors = [];
+      if (this.email === "" || this.password === "") {
+        if (this.email === "") this.errors.push("email");
+        if (this.password === "") this.errors.push("password");
+        return false;
+      }
+      return true;
+    },
     checkuser: function () {
       /////////////////////////////////////////////
-      axios
-      .post('http://localhost:8080/gate/signin',{
-        "email": this.email,
-        "password": this.password,
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      if (!this.checkinputs()) {
+        toast.options = {
+          closeButton: false,
+          debug: false,
+          newestOnTop: false,
+          progressBar: true,
+          positionClass: "toast-top-center",
+          preventDuplicates: true,
+          onclick: null,
+          showDuration: "300",
+          hideDuration: "1000",
+          timeOut: "3000",
+          extendedTimeOut: "1000",
+          showEasing: "swing",
+          hideEasing: "linear",
+          showMethod: "fadeIn",
+          hideMethod: "fadeOut",
+        };
+        toast.error("پر کردن تمام فیلدها الزامیست");
+      } else {
+        axios
+          .post("http://localhost:8080/gate/signin", {
+            email: this.email,
+            password: this.password,
+          })
+          .then((res) => {
+            console.log(res);
+            if (res.data == "unsuccess") {
+              toast.options = {
+                closeButton: false,
+                debug: false,
+                newestOnTop: false,
+                progressBar: true,
+                positionClass: "toast-top-center",
+                preventDuplicates: true,
+                onclick: null,
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "3000",
+                extendedTimeOut: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut",
+              };
+              toast.error("ایمیل یا رمز عبور اشتباه است");
+            } else {
+              localStorage.setItem("username", res.data.name);
+              localStorage.setItem("userId", res.data.id);
+              this.$router.replace({
+                name: "list",
+                params: { name: res.data.name, id: res.data.id },
+              });
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
       ///////////////////////////////////////////
       ////////////////////////////////////////////// check user in client
       // this.haveAccess = false;
